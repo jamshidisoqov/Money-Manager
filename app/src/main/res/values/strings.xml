@@ -10,7 +10,7 @@
 
     <!--Login screen-->
     <string name="login">Login</string>
-    <string name="login_detail">Shartnoma tuzishda ko\'rsatilgan telefon raqami kerak</string>
+    <string name="login_detail">Ilovadan foydalanish uchun ko\'rsatilgan telefon raqami kerak</string>
     <string name="phone">Telefon raqami</string>
     <string name="please_enter_phone_number">Iltimos telefon raqamingizni kiriting</string>
     <string name="please_enter_password">Iltimos parolni kiriting</string>
@@ -18,6 +18,12 @@
     <string name="not_register_yet">Hali ro\'yxatdan o\'tmadingizmi</string>
 
     <!--Register screen-->
-    <string name="register">Regsiter</string>
+    <string name="register">Register</string>
+    <string name="please_enter_name">Iltimos ismingizni kiriting?</string>
+    <string name="already_register">Siz allaqchon ro\'yxatdan o\'tganmisiz?</string>
 
+    <!--Verify screen-->
+    <string name="phone_verification">Phone Verification</string>
+    <string name="verify_now">Verify Now</string>
+    <string name="enter_sms_code">Enter your OTP code here</string>
 </resources>

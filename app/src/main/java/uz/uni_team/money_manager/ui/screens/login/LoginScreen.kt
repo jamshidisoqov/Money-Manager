@@ -87,7 +87,7 @@ fun LoginScreenContent() {
 
             FillAvailableSpace()
             Text(
-                text = stringResource(id = R.string.register),
+                text = stringResource(id = R.string.login),
                 color = Primary,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 16.sp
