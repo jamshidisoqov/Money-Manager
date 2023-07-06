@@ -93,8 +93,6 @@ private fun SplashScreenContent(onAnimationComplete: () -> Unit) {
 @Composable
 fun SplashScreenPreview() {
     MoneyManagerTheme(dynamicColor = false) {
-        SplashScreenContent {
-
-        }
+        SplashScreenContent {}
     }
 }

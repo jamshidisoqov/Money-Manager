@@ -26,4 +26,8 @@
     <string name="phone_verification">Phone Verification</string>
     <string name="verify_now">Verify Now</string>
     <string name="enter_sms_code">Enter your OTP code here</string>
+
+    <!--Main screen-->
+    <string name="not_register">Ro\'yxatdan o\'tmagan</string>
+
 </resources>
