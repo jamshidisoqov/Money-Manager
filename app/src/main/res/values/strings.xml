@@ -29,5 +29,7 @@
 
     <!--Main screen-->
     <string name="not_register">Ro\'yxatdan o\'tmagan</string>
+    <string name="charts">Charts</string>
+
 
 </resources>

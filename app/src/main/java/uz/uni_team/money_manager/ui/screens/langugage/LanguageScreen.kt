@@ -35,6 +35,7 @@ import uz.uni_team.money_manager.ui.composables.Spacer50Dp
 import uz.uni_team.money_manager.ui.composables.language.LanguageItem
 import uz.uni_team.money_manager.ui.composables.language.Languages
 import uz.uni_team.money_manager.ui.screens.login.LoginScreen
+import uz.uni_team.money_manager.ui.screens.main.MainScreen
 
 class LanguageScreen : AndroidScreen() {
     @Composable
@@ -105,7 +106,7 @@ fun LanguageScreenContent() {
                     .fillMaxWidth(),
                 languages = language
             ) {
-                navigator.push(LoginScreen())
+                navigator.push(MainScreen())
             }
             Spacer2Dp()
         }
