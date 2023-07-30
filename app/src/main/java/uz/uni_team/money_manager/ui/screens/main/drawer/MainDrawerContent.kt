@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import uz.uni_team.money_manager.R
+import uz.uni_team.money_manager.common.models.MainDrawerType
+import uz.uni_team.money_manager.data.models.dto.account.AccountTypeDto
 import uz.uni_team.money_manager.providers.theme.MoneyManagerTheme
 import uz.uni_team.money_manager.ui.composables.FillAvailableSpace
 import uz.uni_team.money_manager.ui.composables.Spacer12Dp
@@ -40,9 +42,9 @@ import uz.uni_team.money_manager.ui.composables.Spacer8Dp
 @Composable
 fun MainDrawerContent(
     userInfo: UserInfo?,
-    accountType: AccountType,
+    accountType: AccountTypeDto,
     onProfileClick: () -> Unit,
-    onChangeAccount: (AccountType) -> Unit,
+    onChangeAccount: (AccountTypeDto) -> Unit,
     onMainTypeClick: (MainDrawerType) -> Unit
 ) {
     Column(
@@ -124,7 +126,7 @@ fun MainDrawerContent(
             }
         }
 
-       Spacer8Dp()
+        Spacer8Dp()
 
         LazyColumn(
             modifier = Modifier
@@ -155,7 +157,7 @@ fun MainContentPreview() {
     MoneyManagerTheme(dynamicColor = false) {
         Column(modifier = Modifier.fillMaxSize()) {
             MainDrawerContent(userInfo = UserInfo("", "Jamshid Isoqov", "+99890 714 41 02"),
-                accountType = AccountType(),
+                accountType = AccountTypeDto.PERSONAL,
                 onProfileClick = { },
                 onChangeAccount = {},
                 onMainTypeClick = {})

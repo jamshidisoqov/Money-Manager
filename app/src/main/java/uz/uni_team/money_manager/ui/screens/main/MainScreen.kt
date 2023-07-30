@@ -20,11 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.androidx.AndroidScreen
 import uz.uni_team.money_manager.R
+import uz.uni_team.money_manager.data.models.dto.account.AccountTypeDto
 import uz.uni_team.money_manager.data.models.dto.category.CategoryDto
 import uz.uni_team.money_manager.ui.composables.Spacer12Dp
 import uz.uni_team.money_manager.ui.composables.Spacer8Dp
 import uz.uni_team.money_manager.ui.composables.card.LabeledCard
-import uz.uni_team.money_manager.ui.screens.main.drawer.AccountType
 import uz.uni_team.money_manager.ui.screens.main.drawer.MainDrawerContent
 import uz.uni_team.money_manager.ui.screens.main.drawer.UserInfo
 
@@ -33,9 +33,10 @@ class MainScreen : AndroidScreen() {
     @Composable
     override fun Content() {
         ModalNavigationDrawer(modifier = Modifier.fillMaxHeight(), drawerContent = {
-            MainDrawerContent(userInfo = UserInfo(name = "Jamshid"),
-                accountType = AccountType(),
-                onProfileClick = { /*TODO*/ },
+            MainDrawerContent(
+                userInfo = UserInfo(name = "Jamshid"),
+                accountType = AccountTypeDto.PERSONAL,
+                onProfileClick = { },
                 onChangeAccount = {},
                 onMainTypeClick = {
 
