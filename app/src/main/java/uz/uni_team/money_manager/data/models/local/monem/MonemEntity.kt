@@ -30,10 +30,11 @@ data class MonemEntity(
     @ColumnInfo(name = "amount") val amount: BigDecimal,
     @ColumnInfo(name = "type") val monemType: MonemType,
     @ColumnInfo(name = "is_sync") val isSync: Boolean,
-    @ColumnInfo(name = "time") val time: Date?,
+    @ColumnInfo(name = "time") val time: Date,
+    @ColumnInfo(name = "monem_name") val name:String,
     @ColumnInfo(name = "info") val description: String?,
     @ColumnInfo(name = "is_draft") val isDraft: Boolean?,
-    @ColumnInfo(name = "is_remember_in_time") val isRemember: Boolean?,
+    @ColumnInfo(name = "is_remember_in_time") val isRemember: Boolean?,//for premium account send sms at the time
     @ColumnInfo(name = "account_id") val accountId: Int,
     @ColumnInfo(name = "sender_phone") val phone: String?,
     @ColumnInfo(name = "sender_message") val message: String?

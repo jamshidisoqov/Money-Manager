@@ -23,7 +23,9 @@ data class CategoryEntity(
     @ColumnInfo(name = "child_categories_ids")
     val childCategories:LongArray,
     @ColumnInfo(name ="account_id")
-    val accountId:Int
+    val accountId:Int,
+    @ColumnInfo(name = "is_sync")
+    val isSync:Boolean
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.androidx.AndroidScreen
 import uz.uni_team.money_manager.R
+import uz.uni_team.money_manager.data.models.dto.category.CategoryDto
 import uz.uni_team.money_manager.ui.composables.Spacer12Dp
 import uz.uni_team.money_manager.ui.composables.Spacer8Dp
 import uz.uni_team.money_manager.ui.composables.card.LabeledCard
@@ -36,7 +37,9 @@ class MainScreen : AndroidScreen() {
                 accountType = AccountType(),
                 onProfileClick = { /*TODO*/ },
                 onChangeAccount = {},
-                onMainTypeClick = {})
+                onMainTypeClick = {
+
+                })
         }) {
             MainScreenContent()
         }
@@ -96,18 +99,33 @@ class MainScreen : AndroidScreen() {
                 }
             }
 
-            //Category content
-            LazyRow(modifier = Modifier.fillMaxWidth()) {
 
-            }
-            //Item content
             LazyColumn(modifier = Modifier.weight(1f)) {
+                item {
+                    //Category content
+                    LazyRow(modifier = Modifier.fillMaxWidth()) {
+
+                    }
+                }
+                //Item content
+                items(count = 12){
+
+                }
             }
         }
     }
 
     @Composable
     private fun MainItem() {
+
+    }
+
+    @Composable
+    private fun CategoryItem(
+        modifier: Modifier,
+        categoryDto: CategoryDto,
+        selectedCategoryList:List<Long>
+    ) {
 
     }
 }
