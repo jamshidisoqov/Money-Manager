@@ -14,9 +14,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
+import dagger.hilt.android.AndroidEntryPoint
 import uz.uni_team.money_manager.providers.theme.MoneyManagerTheme
 import uz.uni_team.money_manager.ui.screens.splash.SplashScreen
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {

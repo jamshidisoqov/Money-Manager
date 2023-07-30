@@ -38,10 +38,13 @@ import uz.uni_team.money_manager.providers.language.updateResources
 import uz.uni_team.money_manager.providers.theme.Grey
 import uz.uni_team.money_manager.ui.composables.MonemLoadingView
 import uz.uni_team.money_manager.ui.composables.Spacer15Dp
+import uz.uni_team.money_manager.ui.composables.Spacer24Dp
 import uz.uni_team.money_manager.ui.composables.Spacer2Dp
 import uz.uni_team.money_manager.ui.composables.Spacer50Dp
+import uz.uni_team.money_manager.ui.composables.button.CornerButton
 import uz.uni_team.money_manager.ui.composables.language.LanguageItem
 import uz.uni_team.money_manager.ui.composables.language.Languages
+import uz.uni_team.money_manager.ui.screens.main.MainScreen
 
 class LanguageScreen : AndroidScreen() {
     @Composable
@@ -60,12 +63,18 @@ class LanguageScreen : AndroidScreen() {
                 }
             }
         }
-        LanguageScreenContent(uiState, viewModel::onEventDispatcher)
+        LanguageScreenContent(uiState, viewModel::onEventDispatcher) {
+            navigator?.push(MainScreen())
+        }
     }
 }
 
 @Composable
-fun LanguageScreenContent(uiState: LanguageUiState, onEventDispatcher: (LanguageIntent) -> Unit) {
+fun LanguageScreenContent(
+    uiState: LanguageUiState,
+    onEventDispatcher: (LanguageIntent) -> Unit,
+    navigateToMain: () -> Unit
+) {
     val navigator = LocalNavigator.currentOrThrow
     Column(
         modifier = Modifier
@@ -120,9 +129,11 @@ fun LanguageScreenContent(uiState: LanguageUiState, onEventDispatcher: (Language
 
         Spacer50Dp()
         if (uiState.isLoading) {
-            MonemLoadingView(modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f))
+            MonemLoadingView(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            )
         } else {
             for (language in Languages.values()) {
                 LanguageItem(
@@ -130,13 +141,19 @@ fun LanguageScreenContent(uiState: LanguageUiState, onEventDispatcher: (Language
                         .padding(horizontal = 12.dp)
                         .fillMaxWidth()
                         .padding(horizontal = 12.dp),
-                    isSelected = language==uiState.currentLanguage,
+                    isSelected = language == uiState.currentLanguage,
                     languages = language
                 ) {
                     onEventDispatcher(LanguageIntent.LanguageSelected(language))
                 }
                 Spacer2Dp()
             }
+            Spacer24Dp()
+            CornerButton(
+                modifier = Modifier.padding(horizontal = 12.dp),
+                text = stringResource(id = R.string.next),
+                onClick = navigateToMain
+            )
         }
     }
 }

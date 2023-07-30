@@ -33,13 +33,10 @@ fun LanguageItem(
             )
             Spacer5Dp()
         }
-
-
         CornerButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 52.dp),
-            text = languages.writeName
+                .heightIn(min = 52.dp), text = languages.writeName
         ) {
             onLanguageClick.invoke(languages)
         }

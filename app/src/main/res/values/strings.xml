@@ -16,6 +16,7 @@
     <string name="please_enter_password">Iltimos parolni kiriting</string>
     <string name="password">Password</string>
     <string name="not_register_yet">Hali ro\'yxatdan o\'tmadingizmi</string>
+    <string name="next">Keyingisi</string>
 
     <!--Register screen-->
     <string name="register">Register</string>
