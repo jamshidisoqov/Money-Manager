@@ -3,7 +3,9 @@ package uz.uni_team.money_manager.data.local.dao.monem
 import androidx.room.Dao
 import androidx.room.Query
 import uz.uni_team.money_manager.data.local.dao.BaseDao
+import uz.uni_team.money_manager.data.models.local.monem.MonemAmount
 import uz.uni_team.money_manager.data.models.local.monem.MonemEntity
+import uz.uni_team.money_manager.data.models.local.monem.MonemType
 import java.math.BigDecimal
 import java.util.Date
 
@@ -23,7 +25,7 @@ interface MonemDao : BaseDao<MonemEntity> {
     """
     )
     suspend fun getMonemByFilters(
-        categoryIds: List<Long>,
+        categoryIds: List<Int>,
         query: String,
         startDate: Date?,
         endDate: Date?,
@@ -32,19 +34,30 @@ interface MonemDao : BaseDao<MonemEntity> {
     ): List<MonemEntity>
 
     // INCOME, EXPANSES, IN_DEBT, OUT_DEBT,BALANCE
+    /* @Transaction
+     @Query(
+         """
+     SELECT types.*,sum(types.INCOME+types.IN_DEBT-types.OUT_DEBT-types.EXPANSES) as BALANCE
+     FROM (
+         SELECT
+             sum(case when type = 'INCOME' then amount else 0 end) as INCOME,
+             sum(case when type = 'EXPANSES' then amount else 0 end) as EXPANSES,
+             sum(case when type = 'IN_DEBT' then amount else 0 end) as IN_DEBT,
+             sum(case when type = 'OUT_DEBT' then amount else 0 end) as OUT_DEBT
+         FROM monem
+     ) as types
+     """
+     )
+     suspend fun getAllIncomeExpansesAndBalanceMap(): Any*/
+
     @Query(
         """
-    SELECT types.*,sum(types.INCOME+types.IN_DEBT-types.OUT_DEBT-types.EXPANSES) as BALANCE
-    FROM (
-        SELECT 
-            sum(case when type = 'INCOME' then amount else 0 end) as INCOME,
-            sum(case when type = 'EXPANSES' then amount else 0 end) as EXPANSES,
-            sum(case when type = 'IN_DEBT' then amount else 0 end) as IN_DEBT,
-            sum(case when type = 'OUT_DEBT' then amount else 0 end) as OUT_DEBT
-        FROM monem
-    ) as types
-    """
+            select monem_type,sum(amount) as amount
+            from monem
+            where 1 = 1
+                group by(monem_type)
+        """
     )
-    fun getAllIncomeExpansesAndBalanceMap(): Map<String, BigDecimal>
+    suspend fun getAllIncomeExpansesAndBalance(): List<MonemAmount>
 
 }

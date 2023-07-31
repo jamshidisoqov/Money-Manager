@@ -28,7 +28,7 @@ data class MonemEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo(name = "category_id") val categoryId: Int,
     @ColumnInfo(name = "amount") val amount: BigDecimal,
-    @ColumnInfo(name = "type") val monemType: MonemType,
+    @ColumnInfo(name = "monem_type") val monemType: MonemType,
     @ColumnInfo(name = "is_sync") val isSync: Boolean,
     @ColumnInfo(name = "time") val time: Date,
     @ColumnInfo(name = "monem_name") val name:String,
