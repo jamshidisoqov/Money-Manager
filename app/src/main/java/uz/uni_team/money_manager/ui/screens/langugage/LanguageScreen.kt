@@ -58,9 +58,7 @@ class LanguageScreen : AndroidScreen() {
 
         LaunchedEffect(key1 = Unit) {
             viewModel.changeLanguage.flowWithLifecycle(lifecycle).collect {
-                uiState.currentLanguage?.let {
-                    updateResources(it.code, context)
-                }
+                uiState.currentLanguage?.let { updateResources(it.code, context) }
             }
         }
         LanguageScreenContent(uiState, viewModel::onEventDispatcher) {
@@ -150,7 +148,10 @@ fun LanguageScreenContent(
             }
             Spacer24Dp()
             CornerButton(
-                modifier = Modifier.padding(horizontal = 12.dp),
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp),
                 text = stringResource(id = R.string.next),
                 onClick = navigateToMain
             )

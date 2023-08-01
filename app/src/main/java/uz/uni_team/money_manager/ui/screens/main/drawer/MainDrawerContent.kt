@@ -1,5 +1,6 @@
 package uz.uni_team.money_manager.ui.screens.main.drawer
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,6 +41,7 @@ import uz.uni_team.money_manager.ui.composables.Spacer12Dp
 import uz.uni_team.money_manager.ui.composables.Spacer15Dp
 import uz.uni_team.money_manager.ui.composables.Spacer5Dp
 import uz.uni_team.money_manager.ui.composables.Spacer8Dp
+
 
 @Composable
 fun MainDrawerContent(
@@ -133,16 +137,53 @@ fun MainDrawerContent(
                 .fillMaxWidth()
                 .weight(1f)
         ) {
-            items(count = 10) {
+            items(items = DrawerItemData.values()) { drawerData ->
                 DrawerItem(
                     modifier = Modifier
                         .padding(horizontal = 12.dp, vertical = 2.dp)
                         .fillMaxWidth(),
-                    iconId = R.drawable.ic_charts,
-                    iconColor = Color.Blue,
-                    titleId = R.string.charts
+                    iconId = drawerData.iconId,
+                    iconColor = drawerData.iconColor,
+                    titleId = drawerData.titleId
                 ) {
 
+                }
+            }
+            item {
+                Column {
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp, vertical = 6.dp)
+                            .fillMaxWidth()
+                            .heightIn(min = 56.dp)
+                            .clip(RoundedCornerShape(percent = 30))
+                            .background(color = Color(0x476065D7))
+                            .padding(horizontal = 12.dp, vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_star),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp),
+                            colorFilter = ColorFilter.tint(color = Color(0xFF2675EC))
+                        )
+                        Spacer8Dp()
+
+                        Text(
+                            text = stringResource(id = R.string.premium),
+                            color = Color.Black,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.W700
+                        )
+                    }
+                    Spacer5Dp()
+                    Text(
+                        text = stringResource(id = R.string.app_version),
+                        color = Color.DarkGray,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 6.dp)
+                            .fillMaxWidth()
+                    )
                 }
             }
         }

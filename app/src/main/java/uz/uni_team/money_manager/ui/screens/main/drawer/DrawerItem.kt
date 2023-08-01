@@ -37,14 +37,14 @@ fun DrawerItem(
     @DrawableRes iconId: Int,
     iconColor: Color,
     @StringRes titleId: Int,
-    onSelectedDrawerItem:()->Unit
+    onSelectedDrawerItem: () -> Unit
 ) {
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .clickable {}
-            .padding(horizontal = 4.dp, vertical = 8.dp)
-        , verticalAlignment = Alignment.CenterVertically
+            .clickable(onClick = onSelectedDrawerItem)
+            .padding(horizontal = 4.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
@@ -83,7 +83,7 @@ fun DrawerItemPreview() {
                     iconId = R.drawable.ic_charts,
                     iconColor = Color.Blue,
                     titleId = R.string.charts
-                ){
+                ) {
 
                 }
             }
