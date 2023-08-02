@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,6 +28,7 @@ import uz.uni_team.money_manager.data.models.dto.account.AccountTypeDto
 import uz.uni_team.money_manager.data.models.dto.category.CategoryDto
 import uz.uni_team.money_manager.ui.composables.Spacer12Dp
 import uz.uni_team.money_manager.ui.composables.Spacer8Dp
+import uz.uni_team.money_manager.ui.composables.app_bar.MoneyManagerAppBar
 import uz.uni_team.money_manager.ui.composables.card.LabeledCard
 import uz.uni_team.money_manager.ui.screens.main.drawer.MainDrawerContent
 import uz.uni_team.money_manager.ui.screens.main.drawer.UserInfo
@@ -38,9 +43,7 @@ class MainScreen : AndroidScreen() {
                 accountType = AccountTypeDto.PERSONAL,
                 onProfileClick = { },
                 onChangeAccount = {},
-                onMainTypeClick = {
-
-                })
+                onMainTypeClick = {})
         }) {
             MainScreenContent()
         }
@@ -49,6 +52,14 @@ class MainScreen : AndroidScreen() {
     @Composable
     private fun MainScreenContent() {
         Column(modifier = Modifier.fillMaxSize()) {
+            MoneyManagerAppBar(titleId = R.string.app_name, actions = {
+                IconButton(onClick = {
+
+                }) {
+                    Icon(imageVector = Icons.Filled.Add, contentDescription = "add")
+                }
+            })
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -109,7 +120,7 @@ class MainScreen : AndroidScreen() {
                     }
                 }
                 //Item content
-                items(count = 12){
+                items(count = 12) {
 
                 }
             }
@@ -125,7 +136,7 @@ class MainScreen : AndroidScreen() {
     private fun CategoryItem(
         modifier: Modifier,
         categoryDto: CategoryDto,
-        selectedCategoryList:List<Long>
+        selectedCategoryList: List<Long>
     ) {
 
     }

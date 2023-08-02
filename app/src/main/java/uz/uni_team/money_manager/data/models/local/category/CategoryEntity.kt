@@ -6,26 +6,28 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import uz.uni_team.money_manager.data.models.local.account.AccountsEntity
 
-@Entity(tableName = "categories", foreignKeys = [ForeignKey(
-    entity = AccountsEntity::class,
-    parentColumns = ["id"],
-    childColumns = ["account_id"],
-    onDelete = ForeignKey.CASCADE,
-    onUpdate = ForeignKey.CASCADE
-)])
+@Entity(
+    tableName = "categories", foreignKeys = [ForeignKey(
+        entity = AccountsEntity::class,
+        parentColumns = ["id"],
+        childColumns = ["account_id"],
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE
+    )]
+)
 data class CategoryEntity(
     @PrimaryKey(autoGenerate = true)
-    val id:Int,
+    val id: Int,
     @ColumnInfo(name = "category_name")
-    val categoryName:String,
+    val categoryName: String,
     @ColumnInfo(name = "parent_id")
-    val parentId:Int?,
+    val parentId: Int?,
     @ColumnInfo(name = "child_categories_ids")
-    val childCategories:LongArray,
-    @ColumnInfo(name ="account_id")
-    val accountId:Int,
+    val childCategories: LongArray,
+    @ColumnInfo(name = "account_id", index = true)
+    val accountId: Int,
     @ColumnInfo(name = "is_sync")
-    val isSync:Boolean
+    val isSync: Boolean
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

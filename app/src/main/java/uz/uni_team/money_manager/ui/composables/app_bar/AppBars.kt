@@ -86,21 +86,24 @@ fun MoneyManagerAppBar(
     @StringRes titleId: Int? = null,
     titleStr: String? = null,
     titleTextColor: Color = MaterialTheme.colorScheme.primary,
-    onNavigateBack: () -> Unit,
+    onNavigateBack: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(title = {
         Text(
             text = if (titleId != null) stringResource(id = titleId)
-            else titleStr ?: "", color = titleTextColor
+            else titleStr ?: "", color = titleTextColor,
+            fontWeight = FontWeight.W700
         )
     }, navigationIcon = {
-        IconButton(onClick = { onNavigateBack() }) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "back",
-                tint = MaterialTheme.colorScheme.primary
-            )
+        onNavigateBack?.let {
+            IconButton(onClick = { onNavigateBack() }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "back",
+                    tint = Color.DarkGray
+                )
+            }
         }
     }, actions = actions
     )
@@ -111,7 +114,7 @@ fun MoneyManagerAppBar(
 fun AppBarPreview() {
     MoneyManagerTheme(dynamicColor = false) {
         MoneyManagerAppBar(onNavigateBack = { }, titleStr = "Home", actions = {
-            IconButton(onClick = {  }) {
+            IconButton(onClick = { }) {
                 Icon(
                     imageVector = Icons.Filled.Add,
                     contentDescription = "add",

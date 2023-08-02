@@ -26,7 +26,7 @@ import java.util.Date
 )
 data class MonemEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
-    @ColumnInfo(name = "category_id") val categoryId: Int,
+    @ColumnInfo(name = "category_id", index = true) val categoryId: Int,
     @ColumnInfo(name = "amount") val amount: BigDecimal,
     @ColumnInfo(name = "monem_type") val monemType: MonemType,
     @ColumnInfo(name = "is_sync") val isSync: Boolean,
@@ -35,7 +35,7 @@ data class MonemEntity(
     @ColumnInfo(name = "info") val description: String?,
     @ColumnInfo(name = "is_draft") val isDraft: Boolean?,
     @ColumnInfo(name = "is_remember_in_time") val isRemember: Boolean?,//for premium account send sms at the time
-    @ColumnInfo(name = "account_id") val accountId: Int,
+    @ColumnInfo(name = "account_id", index = true) val accountId: Int,
     @ColumnInfo(name = "sender_phone") val phone: String?,
     @ColumnInfo(name = "sender_message") val message: String?
 )

@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import uz.uni_team.money_manager.R
-import uz.uni_team.money_manager.common.models.MainDrawerType
 import uz.uni_team.money_manager.data.models.dto.account.AccountTypeDto
 import uz.uni_team.money_manager.providers.theme.MoneyManagerTheme
 import uz.uni_team.money_manager.ui.composables.FillAvailableSpace
@@ -49,7 +48,7 @@ fun MainDrawerContent(
     accountType: AccountTypeDto,
     onProfileClick: () -> Unit,
     onChangeAccount: (AccountTypeDto) -> Unit,
-    onMainTypeClick: (MainDrawerType) -> Unit
+    onMainTypeClick: (DrawerItemData) -> Unit
 ) {
     Column(
         modifier = Modifier
