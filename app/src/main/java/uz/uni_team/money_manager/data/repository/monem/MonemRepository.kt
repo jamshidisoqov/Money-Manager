@@ -10,6 +10,9 @@ import uz.uni_team.money_manager.data.mapper.monem.toMonemAmountDto
 import uz.uni_team.money_manager.data.mapper.monem.toMonemDto
 import uz.uni_team.money_manager.data.models.dto.monem.MonemAmountDto
 import uz.uni_team.money_manager.data.models.dto.monem.MonemDto
+import uz.uni_team.money_manager.data.models.dto.monem.MonemTypeDto
+import uz.uni_team.money_manager.data.models.local.monem.MonemType
+import java.math.BigDecimal
 import java.util.Date
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -38,8 +41,24 @@ class MonemRepository @Inject constructor(
         }
     }
 
-    fun calculateIncomeExpansesAndBalance(): Flow<List<MonemAmountDto>> = flow {
-        emit(monemDao.getAllIncomeExpansesAndBalance().toMonemAmountDto())
+    fun calculateIncomeExpansesAndBalance(): Flow<Map<MonemTypeDto, BigDecimal>> = flow {
+        emit(getAmountTypes(monemDao.getAllIncomeExpansesAndBalance().toMonemAmountDto()))
     }.flowOn(Dispatchers.IO)
 
+    private fun getAmountTypes(list: List<MonemAmountDto>): Map<MonemTypeDto, BigDecimal> {
+        val income = list.find { it.type == MonemType.INCOME }?.amount ?: BigDecimal.ZERO
+        val expanses = list.find { it.type == MonemType.EXPANSES }?.amount ?: BigDecimal.ZERO
+        val balance = list.sumOf {
+            if (it.type == MonemType.INCOME || it.type == MonemType.OUT_DEBT) {
+                it.amount
+            } else {
+                it.amount.multiply(BigDecimal(-1))
+            }
+        }
+        return mapOf(
+            MonemTypeDto.EXPANSES to expanses,
+            MonemTypeDto.INCOME to income,
+            MonemTypeDto.BALANCE to balance
+        )
+    }
 }

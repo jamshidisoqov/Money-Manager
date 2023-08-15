@@ -41,7 +41,7 @@ class MainScreen : AndroidScreen() {
             MainDrawerContent(
                 userInfo = UserInfo(name = "Jamshid"),
                 accountType = AccountTypeDto.PERSONAL,
-                onProfileClick = { },
+                onProfileClick = {},
                 onChangeAccount = {},
                 onMainTypeClick = {})
         }) {
