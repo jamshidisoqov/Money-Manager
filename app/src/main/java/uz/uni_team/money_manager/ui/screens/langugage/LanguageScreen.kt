@@ -49,7 +49,6 @@ import uz.uni_team.money_manager.ui.screens.main.MainScreen
 class LanguageScreen : AndroidScreen() {
     @Composable
     override fun Content() {
-
         val viewModel: LanguageViewModel = getViewModel()
         val lifecycle = LocalLifecycleOwner.current.lifecycle
         val navigator = LocalNavigator.current
@@ -73,7 +72,6 @@ fun LanguageScreenContent(
     onEventDispatcher: (LanguageIntent) -> Unit,
     navigateToMain: () -> Unit
 ) {
-    val navigator = LocalNavigator.currentOrThrow
     Column(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.background)

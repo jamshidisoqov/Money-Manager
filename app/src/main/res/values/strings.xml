@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Monem</string>
+
+
+
+    <!--Exceptions-->
+
+    <string name="unknown_exception">Something went wrong</string>
+
+
+
     <!--Language screen-->
     <string name="choose_lang_uz" translatable="false">Tilni tanlang</string>
     <string name="choose_lang_ru" translatable="false">Выберите язык</string>

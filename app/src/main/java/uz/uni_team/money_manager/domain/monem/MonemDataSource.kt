@@ -2,8 +2,6 @@ package uz.uni_team.money_manager.domain.monem
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,12 +10,12 @@ import uz.uni_team.money_manager.data.repository.monem.MonemRepository
 import java.util.Date
 
 @ViewModelScoped
-class MonemDataSource @AssistedInject constructor(
+class MonemDataSource constructor(
     private val repository: MonemRepository,
-    @Assisted private val categoryIds: List<Int>,
-    @Assisted private val query: String,
-    @Assisted private val startDate: Date?,
-    @Assisted private val endDate: Date?
+    private val categoryIds: List<Int>,
+    private val query: String,
+    private val startDate: Date?,
+    private val endDate: Date?
 ) : PagingSource<Int, MonemDto>() {
     override fun getRefreshKey(state: PagingState<Int, MonemDto>): Int? {
         return state.anchorPosition?.let {
